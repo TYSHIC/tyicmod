@@ -1,4 +1,4 @@
-package org.tyic.item;
+package org.tyic.tyicmod.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -10,7 +10,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import org.tyic.TyicMod;
+import org.tyic.tyicmod.TyicMod;
 
 public class ModItemGroups {
     public static final RegistryKey<ItemGroup> TYIC_MOD =
