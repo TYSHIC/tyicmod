@@ -1,4 +1,4 @@
-package org.tyic.item;
+package org.tyic.tyicmod.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -6,7 +6,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import org.tyic.TyicMod;
+import org.tyic.tyicmod.TyicMod;
 
 import java.util.function.Function;
 

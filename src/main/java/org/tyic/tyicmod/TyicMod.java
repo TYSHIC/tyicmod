@@ -1,10 +1,10 @@
-package org.tyic;
+package org.tyic.tyicmod;
 
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tyic.item.ModItemGroups;
-import org.tyic.item.ModItems;
+import org.tyic.tyicmod.item.ModItemGroups;
+import org.tyic.tyicmod.item.ModItems;
 
 public class TyicMod implements ModInitializer {
     public static final String MOD_ID = "tyicmod";

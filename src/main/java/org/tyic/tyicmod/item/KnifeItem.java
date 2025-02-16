@@ -1,4 +1,4 @@
-package org.tyic.item;
+package org.tyic.tyicmod.item;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
