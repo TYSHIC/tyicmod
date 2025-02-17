@@ -20,7 +20,7 @@ public class ModBlocks {
     public static Block register(String id, Function<AbstractBlock.Settings, Block> blockFunction, AbstractBlock.Settings settings) {
         RegistryKey<Block> registryKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(TyicMod.MOD_ID, id));
         Block block = Registry.register(Registries.BLOCK, registryKey, blockFunction.apply(settings.registryKey(registryKey)));
-        ModItems.register(id, (itemSettings) -> new BlockItem(block, itemSettings), new Item.Settings());
+        ModItems.register(id, (itemSettings) -> new BlockItem(block, itemSettings), new Item.Settings().useBlockPrefixedTranslationKey());
         return block;
     }
 

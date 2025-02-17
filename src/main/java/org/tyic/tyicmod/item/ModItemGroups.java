@@ -11,6 +11,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.tyic.tyicmod.TyicMod;
+import org.tyic.tyicmod.block.ModBlocks;
 
 public class ModItemGroups {
     public static final RegistryKey<ItemGroup> TYIC_MOD =
@@ -26,6 +27,7 @@ public class ModItemGroups {
                 .register((itemGroup) -> {
                     itemGroup.add(ModItems.TYIC_LOGO);
                     itemGroup.add(ModItems.KNIFE);
+                    itemGroup.add(ModBlocks.TYSH_BLOCK);
                 });
     }
 }
