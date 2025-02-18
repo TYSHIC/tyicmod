@@ -2,5 +2,6 @@
   "itemGroup.tyic_mod": "TYIC Mod",
   "item.tyicmod.tyic_logo": "TYIC Logo",
   "item.tyicmod.knife": "Knife",
-  "block.tyicmod.tysh_block": "TYSH Block"
+  "block.tyicmod.tysh_block": "TYSH Block",
+  "block.tyicmod.water_feeder": "Water Feeder"
 }

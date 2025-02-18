@@ -16,6 +16,7 @@ import java.util.function.Function;
 
 public class ModBlocks {
     public static final Block TYSH_BLOCK = register("tysh_block", Block::new, AbstractBlock.Settings.create());
+    public static final Block WATER_FEEDER = register("water_feeder", WaterFeederBlock::new, AbstractBlock.Settings.create());
 
     public static Block register(String id, Function<AbstractBlock.Settings, Block> blockFunction, AbstractBlock.Settings settings) {
         RegistryKey<Block> registryKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(TyicMod.MOD_ID, id));

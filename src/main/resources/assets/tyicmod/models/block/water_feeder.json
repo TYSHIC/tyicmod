@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraft:block/copper_block",
+    "down": "minecraft:block/copper_block",
+    "up": "minecraft:block/copper_block",
+    "north": "tyicmod:block/water_feeder",
+    "south": "minecraft:block/copper_block",
+    "west": "minecraft:block/copper_block",
+    "east": "minecraft:block/copper_block"
+  }
+}
