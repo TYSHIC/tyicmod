@@ -2,11 +2,11 @@
   "variants": {
     "facing=down": {
       "model": "tyicmod:block/water_feeder",
-      "z": 90
+      "x": 90
     },
     "facing=east": {
       "model": "tyicmod:block/water_feeder",
-      "x": 90
+      "y": 90
     },
     "facing=north": {
       "model": "tyicmod:block/water_feeder"

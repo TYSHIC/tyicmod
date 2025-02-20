@@ -28,6 +28,7 @@ public class ModItemGroups {
                     itemGroup.add(ModItems.TYIC_LOGO);
                     itemGroup.add(ModItems.KNIFE);
                     itemGroup.add(ModBlocks.TYSH_BLOCK);
+                    itemGroup.add(ModBlocks.WATER_FEEDER);
                 });
     }
 }

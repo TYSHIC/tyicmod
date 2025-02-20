@@ -3,10 +3,8 @@ package org.tyic.tyicmod.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.potion.Potions;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -56,13 +54,21 @@ public class WaterFeederBlock extends Block {
         return false;
     }
 
+    private final Map<Item, Item> itemMap = Map.<Item, Item>of(
+            Items.DIRT, Items.MUD,
+            Items.PALE_MOSS_BLOCK, Items.MOSS_BLOCK,
+            Items.PALE_MOSS_CARPET, Items.MOSS_CARPET
+    );
+
     @Override
-    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
+                                         PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient() || hit.getSide() != state.get(FACING) || !nextToWater(world, pos))
             return ActionResult.PASS;
-        Map<Item, ItemStack> itemStackMap = Map.<Item, ItemStack>of(Items.DIRT, new ItemStack(Items.GRASS_BLOCK), Items.BUCKET, new ItemStack(Items.WATER_BUCKET), Items.GLASS_BOTTLE, PotionContentsComponent.createStack(Items.POTION, Potions.WATER));
-        if (!itemStackMap.containsKey(stack.getItem())) return ActionResult.PASS;
-        ItemUsage.exchangeStack(stack, player, itemStackMap.get(stack.getItem()));
-        return ActionResult.SUCCESS;
+        Item item = stack.getItem();
+        if (!itemMap.containsKey(item)) return ActionResult.PASS;
+        ItemStack itemStack = ItemUsage.exchangeStack(stack, player, new ItemStack(itemMap.get(item)));
+        player.setStackInHand(hand, itemStack);
+        return ActionResult.SUCCESS.withNewHandStack(itemStack);
     }
 }
