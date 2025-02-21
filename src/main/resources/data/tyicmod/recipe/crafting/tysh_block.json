@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:gold_block",
+    "minecraft:purple_dye",
+    "minecraft:lime_dye"
+  ],
+  "result": {
+    "id": "tyicmod:tysh_block",
+    "count": 1
+  }
+}

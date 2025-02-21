@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "minecraft:moss_block",
+  "result": {
+    "id": "minecraft:pale_moss_block",
+    "count": 1
+  },
+  "experience": 5
+}
