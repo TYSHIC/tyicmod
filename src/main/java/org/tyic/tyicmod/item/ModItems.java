@@ -13,6 +13,8 @@ import java.util.function.Function;
 public class ModItems {
     public static final Item TYIC_LOGO = register("tyic_logo", Item::new, new Item.Settings());
     public static final Item KNIFE = register("knife", KnifeItem::new, new Item.Settings().maxCount(1).useCooldown(1).maxDamage(5));
+    public static final Item TNT_REMOTE = register("tnt_remote", TntRemoteItem::new, new Item.Settings().maxCount(1));
+
 
     public static Item register(String id, Function<Item.Settings, Item> itemFunction, Item.Settings settings) {
         RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(TyicMod.MOD_ID, id));

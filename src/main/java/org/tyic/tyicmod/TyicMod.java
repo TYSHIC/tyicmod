@@ -22,6 +22,7 @@ public class TyicMod implements ModInitializer {
         // Proceed with mild caution.
 
         LOGGER.info("Initializing Tyic Mod.");
+        ModDataComponentTypes.init();
         ModItems.init();
         ModBlocks.init();
         ModItemGroups.init();
