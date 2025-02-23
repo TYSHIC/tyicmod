@@ -29,6 +29,7 @@ public class ModItemGroups {
                     itemGroup.add(ModItems.KNIFE);
                     itemGroup.add(ModBlocks.TYSH_BLOCK);
                     itemGroup.add(ModBlocks.WATER_FEEDER);
+                    itemGroup.add(ModItems.TNT_REMOTE);
                 });
     }
 }
