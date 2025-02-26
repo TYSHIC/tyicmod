@@ -4,5 +4,10 @@
   "item.tyicmod.knife": "Knife",
   "item.tyicmod.tnt_remote": "TNT Remote",
   "block.tyicmod.tysh_block": "TYSH Block",
-  "block.tyicmod.water_feeder": "Water Feeder"
+  "block.tyicmod.water_feeder": "Water Feeder",
+  "block.tyicmod.redstone_heater": "Redstone Heater",
+  "tooltip.tyicmod.press_shift": "Press Shift to display more information",
+  "tooltip.tyicmod.tnt_remote.binding_tnt": "Binding TNT: x: %d, y: %d, z: %d",
+  "tooltip.tyicmod.tnt_remote.priming_tnt": "!!!Priming TNT!!!",
+  "tooltip.tyicmod.redstone_heater.redstone": "Redstone: %d / %d"
 }

@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -15,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.tyic.tyicmod.ModDataComponentTypes;
+import org.tyic.tyicmod.Util;
 
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class TntRemoteItem extends Item {
             BlockPos blockPos = blockHitResult.getBlockPos();
             if (world.getBlockState(blockPos).isOf(Blocks.TNT)) {
                 stack.set(ModDataComponentTypes.BLOCK_POS, blockPos);
+                user.sendMessage(Text.translatable("tooltip.tyicmod.tnt_remote.binding_tnt",
+                        blockPos.getX(), blockPos.getY(), blockPos.getZ()).withColor(Colors.GREEN), true);
                 return ActionResult.SUCCESS;
             }
         }
@@ -41,6 +45,8 @@ public class TntRemoteItem extends Item {
             stack.remove(ModDataComponentTypes.BLOCK_POS);
             return ActionResult.PASS;
         }
+        user.sendMessage(Text.translatable("tooltip.tyicmod.tnt_remote.priming_tnt")
+                .withColor(Colors.RED), true);
         world.removeBlock(tntBlockPos, false);
         TntBlock.primeTnt(world, tntBlockPos);
         stack.remove(ModDataComponentTypes.BLOCK_POS);
@@ -50,8 +56,11 @@ public class TntRemoteItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         BlockPos tntBlockPos = stack.get(ModDataComponentTypes.BLOCK_POS);
-        if (tntBlockPos != null) tooltip.add(Text.literal("x: %d, y: %d, z: %d"
-                .formatted(tntBlockPos.getX(), tntBlockPos.getY(), tntBlockPos.getZ())));
+        if (tntBlockPos != null)
+            if (Util.hasShiftDown.get())
+                tooltip.add(Text.translatable("tooltip.tyicmod.tnt_remote.binding_tnt",
+                        tntBlockPos.getX(), tntBlockPos.getY(), tntBlockPos.getZ()).withColor(Colors.GREEN));
+            else tooltip.add(Util.PRESS_SHIFT);
         super.appendTooltip(stack, context, tooltip, type);
     }
 }

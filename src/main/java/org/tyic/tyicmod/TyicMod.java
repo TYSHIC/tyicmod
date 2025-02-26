@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tyic.tyicmod.block.ModBlocks;
+import org.tyic.tyicmod.block.entity.ModBlockEntityTypes;
 import org.tyic.tyicmod.item.ModItemGroups;
 import org.tyic.tyicmod.item.ModItems;
 
@@ -22,9 +23,11 @@ public class TyicMod implements ModInitializer {
         // Proceed with mild caution.
 
         LOGGER.info("Initializing Tyic Mod.");
-        ModDataComponentTypes.init();
         ModItems.init();
+        ModDataComponentTypes.init();
         ModBlocks.init();
+        ModBlockEntityTypes.init();
         ModItemGroups.init();
+
     }
 }

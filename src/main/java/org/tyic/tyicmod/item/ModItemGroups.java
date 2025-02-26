@@ -30,6 +30,7 @@ public class ModItemGroups {
                     itemGroup.add(ModBlocks.TYSH_BLOCK);
                     itemGroup.add(ModBlocks.WATER_FEEDER);
                     itemGroup.add(ModItems.TNT_REMOTE);
+                    itemGroup.add(ModBlocks.REDSTONE_HEATER);
                 });
     }
 }

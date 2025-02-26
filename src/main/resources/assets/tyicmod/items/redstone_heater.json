@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "tyicmod:block/electric_pot"
+    "model": "tyicmod:block/redstone_heater"
   }
 }

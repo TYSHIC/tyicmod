@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tyicmod:block/redstone_heater"
+    }
+  }
+}
