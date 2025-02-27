@@ -11,10 +11,13 @@ import org.tyic.tyicmod.TyicMod;
 import org.tyic.tyicmod.block.ModBlocks;
 
 public class ModBlockEntityTypes {
-    public static final BlockEntityType<RedstoneHeaterBlockEntity> REDSTONE_HEATER = register("redstone_heater", RedstoneHeaterBlockEntity::new, ModBlocks.REDSTONE_HEATER);
+    public static final BlockEntityType<RedstoneHeaterBlockEntity> REDSTONE_HEATER =
+            register("redstone_heater", RedstoneHeaterBlockEntity::new, ModBlocks.REDSTONE_HEATER);
 
-    public static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(TyicMod.MOD_ID, id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+    public static <T extends BlockEntity> BlockEntityType<T> register(
+            String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(TyicMod.MOD_ID, id),
+                FabricBlockEntityTypeBuilder.create(factory, blocks).build());
     }
 
     public static void init() {

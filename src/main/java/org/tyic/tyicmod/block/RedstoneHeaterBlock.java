@@ -42,10 +42,6 @@ public class RedstoneHeaterBlock extends BlockWithEntity {
         super(settings);
     }
 
-    private static Text getRedstoneText(int redstone) {
-        return Text.translatable("tooltip.tyicmod.redstone_heater.redstone", redstone, RedstoneHeaterBlockEntity.MAX_REDSTONE).withColor(Colors.GREEN);
-    }
-
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
@@ -61,12 +57,27 @@ public class RedstoneHeaterBlock extends BlockWithEntity {
         return world.isClient() ? null : validateTicker(type, ModBlockEntityTypes.REDSTONE_HEATER, RedstoneHeaterBlockEntity::tick);
     }
 
+    private static Text getRedstoneText(int redstone) {
+        return Text.translatable("tooltip.tyicmod.redstone_heater.redstone", redstone,
+                RedstoneHeaterBlockEntity.MAX_REDSTONE).withColor(Colors.GREEN);
+    }
+
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+        if (Util.hasShiftDown.get())
+            tooltip.add(getRedstoneText(Objects.requireNonNullElse(stack.get(ModDataComponentTypes.REDSTONE), 0)));
+        else tooltip.add(Util.PRESS_SHIFT);
+        super.appendTooltip(stack, context, tooltip, options);
+    }
+
+    @Override
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos,
+                                 PlayerEntity player, BlockHitResult hit) {
         if (world.isClient() || !(world.getBlockEntity(pos) instanceof RedstoneHeaterBlockEntity blockEntity))
             return ActionResult.PASS;
         ItemStack itemStack;
-        if (!((itemStack = player.getMainHandStack()).isOf(Items.REDSTONE) || (itemStack = player.getOffHandStack()).isOf(Items.REDSTONE))) {
+        if (!((itemStack = player.getMainHandStack()).isOf(Items.REDSTONE)
+                || (itemStack = player.getOffHandStack()).isOf(Items.REDSTONE))) {
             player.sendMessage(getRedstoneText(blockEntity.getRedstone()), true);
             return ActionResult.SUCCESS;
         }
@@ -77,36 +88,42 @@ public class RedstoneHeaterBlock extends BlockWithEntity {
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!(world instanceof ServerWorld serverWorld) || !(entity instanceof ItemEntity inputItemEntity)) return;
+        if (!(world instanceof ServerWorld serverWorld)
+                || !(entity instanceof ItemEntity inputItemEntity)
+                || !(world.getBlockEntity(pos) instanceof RedstoneHeaterBlockEntity blockEntity))
+            return;
         ItemStack inputStack = inputItemEntity.getStack();
         SingleStackRecipeInput singleStackRecipeInput = new SingleStackRecipeInput(inputStack);
         Optional<RecipeEntry<SmeltingRecipe>> recipeEntry = serverWorld.getRecipeManager()
                 .getFirstMatch(RecipeType.SMELTING, singleStackRecipeInput, world);
         if (recipeEntry.isEmpty()) return;
         Vec3d centerPos = pos.toCenterPos();
-        inputItemEntity.discard();
-        for (int i = 0; i < inputStack.getCount(); i++)
+        while (inputStack.getCount() > 0) {
+            if (blockEntity.getRedstone() < 100) return;
+            blockEntity.addRedstone(-100);
+            inputStack.decrement(1);
             world.spawnEntity(new ItemEntity(world, centerPos.getX(), pos.getY() + 1, centerPos.getZ(),
                     recipeEntry.get().value().craft(singleStackRecipeInput, world.getRegistryManager())));
+        }
     }
 
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (world.isClient() || !(world.getBlockEntity(pos) instanceof RedstoneHeaterBlockEntity blockEntity) || blockEntity.getRedstone() <= 0)
+        if (world.isClient() || !(world.getBlockEntity(pos) instanceof RedstoneHeaterBlockEntity blockEntity))
             return super.onBreak(world, pos, state, player);
+        if (blockEntity.getRedstone() <= 0) {
+            if (player.isCreative()) return super.onBreak(world, pos, state, player);
+            ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(),
+                    new ItemStack(ModBlocks.REDSTONE_HEATER));
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
+            return super.onBreak(world, pos, state, player);
+        }
         ItemStack itemStack = new ItemStack(this);
         itemStack.applyComponentsFrom(blockEntity.createComponentMap());
         ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), itemStack);
         itemEntity.setToDefaultPickupDelay();
         world.spawnEntity(itemEntity);
         return super.onBreak(world, pos, state, player);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
-        if (Util.hasShiftDown.get())
-            tooltip.add(getRedstoneText(Objects.requireNonNullElse(stack.get(ModDataComponentTypes.REDSTONE), 0)));
-        else tooltip.add(Util.PRESS_SHIFT);
-        super.appendTooltip(stack, context, tooltip, options);
     }
 }

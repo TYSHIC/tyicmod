@@ -17,8 +17,8 @@ public class RedstoneHeaterBlockEntity extends BlockEntity {
         super(ModBlockEntityTypes.REDSTONE_HEATER, pos, state);
     }
 
-    public void setRedstone(int water) {
-        this.redstone = Math.clamp(water, 0, MAX_REDSTONE);
+    public void setRedstone(int value) {
+        this.redstone = Math.clamp(value, 0, MAX_REDSTONE);
     }
 
     public void addRedstone(int value) {
@@ -26,10 +26,11 @@ public class RedstoneHeaterBlockEntity extends BlockEntity {
     }
 
     public int getRedstone() {
-        return redstone;
+        return this.redstone;
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, RedstoneHeaterBlockEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state,
+                            RedstoneHeaterBlockEntity blockEntity) {
         if (blockEntity.getRedstone() <= 0) return;
         blockEntity.addRedstone(-1);
     }
