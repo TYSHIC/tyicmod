@@ -7,7 +7,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.tyic.tyicmod.ModDataComponentTypes;
+import org.tyic.tyicmod.item.ModDataComponentTypes;
 
 public class RedstoneHeaterBlockEntity extends BlockEntity {
     private int redstone = 0;

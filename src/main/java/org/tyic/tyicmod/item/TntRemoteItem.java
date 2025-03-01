@@ -15,7 +15,6 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
-import org.tyic.tyicmod.ModDataComponentTypes;
 import org.tyic.tyicmod.Util;
 
 import java.util.List;

@@ -26,10 +26,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.tyic.tyicmod.ModDataComponentTypes;
 import org.tyic.tyicmod.Util;
 import org.tyic.tyicmod.block.entity.ModBlockEntityTypes;
 import org.tyic.tyicmod.block.entity.RedstoneHeaterBlockEntity;
+import org.tyic.tyicmod.item.ModDataComponentTypes;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package org.tyic.tyicmod;
+package org.tyic.tyicmod.item;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentType;
@@ -7,6 +7,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
+import org.tyic.tyicmod.TyicMod;
 
 public class ModDataComponentTypes {
     public static final ComponentType<BlockPos> BLOCK_POS = register("block_pos", BlockPos.CODEC);
